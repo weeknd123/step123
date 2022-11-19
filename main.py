@@ -1,10 +1,14 @@
 class Student:
-    def __init__(self, name=None):
+    def __init__(self, name=None, height=160):
         self.name = name
-    def __str__(self):
-        return f"I am a student. My name is {self.name}."
-    def __del__(self):
-        print("Training is over. I am now an expert!")
+        self.height = height
+    def __bool__(self):
+        return self.name != None
+    def __len__(self):
+        return self.height
 
-nick = Student(name="Nick")
-print(nick)
+nick = Student()
+print(nick.__len__())
+print(nick.__bool__())
+print(len(nick))
+print(bool(nick))
