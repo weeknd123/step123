@@ -4,10 +4,11 @@ class Student:
         self.name = name
         self.gladness = 50
         self.progress = 0
+        self.money = 5
         self.alive = True
     def to_study(self):
         print("Time to study")
-        self.progress += 0.12
+        self.progress += 0.03
         self.gladness -= 3
     def to_sleep(self):
         print("I will sleep")
@@ -16,9 +17,21 @@ class Student:
         print("Rest time")
         self.gladness += 5
         self.progress -= 0.1
+        self.money -= 3
+    def to_work(self):
+        print("Time to go work")
+        self.money += 5
+        self.progress +=0.1
+        self.gladness -= 3
+
+
 
     def is_alive(self):
-        if self.progress < -0.5:
+        if self.money <= -3:
+            self.to_work()
+        elif self.progress <= -0.3:
+            self.to_study()
+        elif self.progress < -0.5:
             print("Cast Out...")
             self.alive = False
         elif self.gladness <=0:
@@ -26,6 +39,9 @@ class Student:
             self.alive = False
         elif self.progress > 5:
             print("Passed externally...")
+            self.alive = False
+        elif self.money < -5:
+            print("Broke")
             self.alive = False
 
     def end_of_day(self):
