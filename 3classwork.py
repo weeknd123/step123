@@ -119,11 +119,11 @@ class Human:
             self.get_home()
         if self.car is None:
             self.get_car()
-            print(f"I bought a car{self.car.brand}")
+            print(f"I bought a car {self.car.brand}")
         if self.job is None:
             self.get_job()
             print(f"I don't have a job, I'm going to get a job "
-                  f"{self.job.job} with salary {self.job.salary}")
+                  f"as a {self.job.job} with salary of {self.job.salary}$")
         self.days_indexes(day)
         dice = random.randint(1, 4)
         if self.satiety < 20:
@@ -155,5 +155,60 @@ class Human:
         elif dice == 4:
             print("Time for treats!")
             self.shopping(manage="delicacies")
+
+
+brands_of_car = {"BMW":{"fuel":100, "strength": 100, "consumption": 6},
+                 "Lada":{"fuel": 50, "strength": 40, "consumption": 10},
+                 "Volvo":{"fuel": 70, "strength": 150, "consumption": 8},
+                 "Ferrari":{"fuel": 80, "strength": 230, "consumption": 14} }
+
+
+class Auto:
+    def __init__(self, brand_list):
+        self.brand=random.choice(list(brand_list))
+        self.fuel=brand_list[self.brand]["fuel"]
+        self.strength = brand_list[self.brand]["strength"]
+        self.consumption=brand_list[self.brand]["consumption"]
+
+    def drive(self):
+        if self.strength > 0 and self.fuel >= self.consumption:
+            self.fuel -= self.consumption
+            self.strength -= 1
+            return True
+        else:
+            print("The car cannot move")
+            return False
+
+class House:
+    def __init__(self):
+        self.mess = 0
+        self.food = 0
+
+job_list = {"Java developer":
+                           {"Salary": 50, "gladness_less": 10 },
+            "Python developer":
+                             {"Salary": 40, "gladness_less": 3 },
+            "C++ developer":
+                          {"Salary": 45, "gladness_less": 25 },
+            "Rust developer":
+                           {"Salary:": 70, "gladness_less": 1 },}
+
+
+
+class Job:
+    def __init__(self, job_list):
+        self.job=random.choice(list(job_list))
+        self.salary=job_list[self.job]["Salary"]
+        self.gladness_less=job_list[self.job]["gladness_less"]
+
+
+
+nick = Human(name="Cris")
+for day in range(1,800):
+    if nick.live(day) == False:
+        break
+
+
+
 
 
